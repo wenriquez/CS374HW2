@@ -5,8 +5,6 @@
 
 int main()
 {
-
-    makeFIFOS();
-
-    return 0;
+   makeFIFOS();
+   return 0;
 }
