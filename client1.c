@@ -9,41 +9,24 @@ void *LoopWrite(void *FIFOname);
 
 int main()
 {
-
-    //makeFIFOS();
-
-     
-   
-    run();
- 
-    //writeFIFO(FIFO_FILE1);
-
-
-
-        //remove(FIFO_FILE1);
-
-    pthread_exit(NULL);
-    return 0;
+   run();
+   pthread_exit(NULL);
+   return 0;
 }
 
 void run(void)
 {
-   
-    pthread_t read;
-    pthread_t write;
+   pthread_t read;
+   pthread_t write;
   
-
-    pthread_create(&write, NULL,LoopWrite, (void *)FIFO_FILE1);
-    pthread_create(&read, NULL,LoopRead, (void *)FIFO_FILE2); 
-
-   
-
+   pthread_create(&write, NULL,LoopWrite, (void *)FIFO_FILE1);
+   pthread_create(&read, NULL,LoopRead, (void *)FIFO_FILE2); 
 }
 
 void *LoopRead(void *FIFOname)
 {
     while(1){
-
+   
     readFIFO(FIFOname);
 
     }
