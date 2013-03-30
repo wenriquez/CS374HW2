@@ -37,7 +37,7 @@ int runTests() {
 
     int passCount = 0;
 
-    passCount += TestreadLine();
+    passCount += TestreadLine(); // Only tests the custom method
 
     return passCount;
 }
