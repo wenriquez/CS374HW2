@@ -61,20 +61,11 @@ char * readLine(void) {
 
 void makeFIFOS(void)
 {
-
-        /* Create the FIFOS if they do not exist */
-
-
-            
-              
-            umask(0);
-             mknod(FIFO_FILE1, S_IFIFO|0666, 0);
-
-
-             umask(0);
-             mknod(FIFO_FILE2, S_IFIFO|0666, 0);
-
-
+    umask(0);
+    mknod(FIFO_FILE1, S_IFIFO|0666, 0);
+     
+    umask(0);
+    mknod(FIFO_FILE2, S_IFIFO|0666, 0);
 }
 
 
@@ -86,8 +77,7 @@ void *readFIFO(void *FIFOname)
     
     fgets(readbuf,readLimit,fp);
 
-   
-    int result = strncmp(temp,readbuf, compareLimit);
+    int result = strncmp(temp,readbuf, compareLimit); //tests the exit condition
 
     if(result == 0)
     {
@@ -97,7 +87,6 @@ void *readFIFO(void *FIFOname)
     printf("\n%s%s\n","[reply]",readbuf);
     fflush(fp);
     fflush(stdout);
-    //printf("[send]:");
     fclose(fp);
     
 }
@@ -106,11 +95,9 @@ void *writeFIFO(void *FIFOname)
 {
    char temp[8] = "_exit_";
     fflush(stdout);
-    //printf("[send]:");
     char* line = readLine();
      
-    
-    int result = strncmp(temp,line, compareLimit);
+    int result = strncmp(temp,line, compareLimit); //tests the exit condition
 
     if(result == 0)
     {
@@ -120,7 +107,6 @@ void *writeFIFO(void *FIFOname)
     FILE *fp;
     fp = fopen(FIFOname, "w");
     fputs(line, fp);
-    //printf(readbuf);
     fflush(fp);
     fclose(fp);
     free(line);
